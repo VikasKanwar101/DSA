@@ -5,9 +5,9 @@ public:
         long long n=1;
         vector<int> a;
         a.push_back(1);
-        for(int j=1;j<=i;j++)
+        for(int j=1;j<i;j++)
         {
-            n=n*(i-j+1);
+            n=n*(i-j);
             n=n/j;
             a.push_back(n);
         }
@@ -19,7 +19,7 @@ public:
         if(numRows==1) return {{1}};
         p.push_back({1});
         p.push_back({1,1});
-        for(int i=2;i<numRows;i++)
+        for(int i=3;i<=numRows;i++)
         {
             p.push_back(row(i));
         }
