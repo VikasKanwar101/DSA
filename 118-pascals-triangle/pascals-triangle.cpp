@@ -17,9 +17,9 @@ public:
         
         vector<vector<int>>p;
         if(numRows==1) return {{1}};
-        p.push_back({1});
-        p.push_back({1,1});
-        for(int i=2;i<numRows;i++)
+        // p.push_back({1});
+        // p.push_back({1,1});
+        for(int i=0;i<numRows;i++)
         {
             p.push_back(row(i));
         }
