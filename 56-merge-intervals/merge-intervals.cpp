@@ -7,23 +7,10 @@ public:
     sort(intervals.begin(),intervals.end());
     for(int i=0;i<r;i++)
     {
-        f=intervals[i][0];
-        e=intervals[i][1];
-        if(!ans.empty() && e<=ans.back()[1])
-        {
-            continue;
-        }
+        if(ans.empty() || intervals[i][0] > ans.back()[1])
+        ans.push_back(intervals[i]);
         else
-        {
-            for(int j=i+1;j<r;j++)
-            {
-                if(intervals[j][0]<=e)
-                e=max(e,intervals[j][1]);
-                else
-                break;
-            }
-        }
-        ans.push_back({f,e});
+        ans.back()[1]=max(ans.back()[1],intervals[i][1]);
     }
     return ans;
     }
