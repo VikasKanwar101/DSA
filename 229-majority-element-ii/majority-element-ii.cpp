@@ -14,7 +14,6 @@ public:
                 ans.push_back(nums[i]);
                 if(ans.size()==2)
                 return ans;
-                count[nums[i]]=INT_MIN;
             }
         }
         return ans;
