@@ -26,7 +26,9 @@ public:
             rem=rem->next;
             d--;
         }
+        ListNode* temp=rem->next;
         rem->next=rem->next->next;
+        delete temp;
         return head;
     }
 };
