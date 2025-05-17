@@ -6,25 +6,23 @@
  *     ListNode(int x) : val(x), next(NULL) {}
  * };
  */
-#include <unordered_set>
-
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        std::unordered_set<ListNode*>n;
+        if(headA==NULL || headB ==NULL) return NULL;
         ListNode *a=headA;
-        while(a!=NULL)
-        {
-            n.insert(a);
-            a=a->next;
-        }
         ListNode *b=headB;
-        while(b!=NULL)
+        while(a!=b)
         {
-            if(n.find(b)!=n.end())
-            return b;
+            if(a==NULL)
+            a=headB;
+            else
+            a=a->next;
+            if(b==NULL)
+            b=headA;
+            else
             b=b->next;
         }
-        return nullptr;
+        return a;
     }
 };
