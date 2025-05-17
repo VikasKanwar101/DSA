@@ -11,24 +11,20 @@
 class Solution {
 public:
     ListNode *getIntersectionNode(ListNode *headA, ListNode *headB) {
-        std::unordered_set<ListNode*> nodeSet;
-
-        // Step 1: Store all nodes of list A in the hash set
-        ListNode* currA = headA;
-        while (currA != nullptr) {
-            nodeSet.insert(currA);
-            currA = currA->next;
+        std::unordered_set<ListNode*>n;
+        ListNode *a=headA;
+        while(a!=NULL)
+        {
+            n.insert(a);
+            a=a->next;
         }
-
-        // Step 2: Traverse list B and check for intersection
-        ListNode* currB = headB;
-        while (currB != nullptr) {
-            if (nodeSet.find(currB) != nodeSet.end()) {
-                return currB; // Intersection point found
-            }
-            currB = currB->next;
+        ListNode *b=headB;
+        while(b!=NULL)
+        {
+            if(n.find(b)!=n.end())
+            return b;
+            b=b->next;
         }
-
-        return nullptr; // No intersection found
+        return nullptr;
     }
 };
