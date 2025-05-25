@@ -9,9 +9,6 @@ public:
             else
             d=d+nums[i];
         }
-        if(d>c || c>d)
-        return true;
-        else 
-        return false;
+        return c!=d;
     }
 };
