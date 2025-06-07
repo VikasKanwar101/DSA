@@ -1,13 +1,13 @@
 class Solution {
 public:
     void reverseString(vector<char>& s) {
-        reverseHelper(s, 0, s.size() - 1);
+        reverseHelper(s, 0, s.size());
     }
 
 private:
-    void reverseHelper(vector<char>& s, int left, int right) {
-        if (left >= right) return;
-        swap(s[left], s[right]);
-        reverseHelper(s, left + 1, right - 1);
+    void reverseHelper(vector<char>& s, int i, int n) {
+        if (i >= n/2) return;
+        swap(s[i], s[n-i-1]);
+        reverseHelper(s, i + 1, n);
     }
 };
