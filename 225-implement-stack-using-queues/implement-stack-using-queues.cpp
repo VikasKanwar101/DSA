@@ -1,34 +1,33 @@
-#include <queue>
-
 class MyStack {
 private:
-    std::queue<int> q1, q2; // Two queues
-
+queue<int> q;
 public:
     MyStack() {
     }
     
     void push(int x) {
-        q2.push(x);  // Push element to q2
-        while (!q1.empty()) {
-            q2.push(q1.front()); // Move all elements from q1 to q2
-            q1.pop();
+        q.push(x);
+        int s=q.size();
+        for(int i=1;i<s;i++)
+        {
+            q.push(q.front());
+            q.pop();
         }
-        std::swap(q1, q2); // Swap q1 and q2
     }
     
     int pop() {
-        int topElement = q1.front();
-        q1.pop();
-        return topElement;
+        int l=q.front();
+        q.pop();
+        return l;
     }
     
     int top() {
-        return q1.front();
+        return q.front();
     }
     
     bool empty() {
-        return q1.empty();
+        if(q.empty()) return true;
+        else return false;
     }
 };
 
