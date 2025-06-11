@@ -7,11 +7,11 @@ public:
         while(r<s.length()){
             hash[s[r]-'A']++;
             maxf=max(maxf,hash[s[r]-'A']);
-            while((r-l+1)-maxf > k){   //If length of substring - max freq of any char > k->trim
+            if((r-l+1)-maxf > k){   //If length of substring - max freq of any char > k->trim
                 hash[s[l]-'A']--;
                 maxf=0;
-                for(int i=0;i<25;i++)
-                maxf=max(maxf,hash[i]);    //Update the value of maxf after trimming down
+                // for(int i=0;i<25;i++)
+                // maxf=max(maxf,hash[i]);    //Update the value of maxf after trimming down
                 l++;
             }
             if((r-l+1)-maxf <= k){
