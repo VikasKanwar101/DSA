@@ -11,43 +11,25 @@
  */
 class Solution {
 public:
-    std::vector<std::vector<int>> levelOrder(TreeNode* root) {
-        std::vector<std::vector<int>> result;
-
-        // If the tree is empty, return an empty result.
-        if (root == nullptr) {
-            return result;
-        }
-
-        // Use a queue for BFS. Store TreeNode pointers.
-        std::queue<TreeNode*> q;
+    vector<vector<int>> levelOrder(TreeNode* root) {
+        vector<vector<int>> ans;
+        if(root==NULL) return ans;
+        queue<TreeNode*> q;
         q.push(root);
-
-        while (!q.empty()) {
-            // Get the number of nodes at the current level.
-            int levelSize = q.size();
-            std::vector<int> currentLevelNodes;
-
-            // Process all nodes at the current level.
-            for (int i = 0; i < levelSize; ++i) {
-                TreeNode* currentNode = q.front();
+        while(!q.empty()){
+            vector<int> temp;
+            int s=q.size();
+            for(int i=0;i<s;i++){
+                TreeNode* node=q.front();
                 q.pop();
-
-                currentLevelNodes.push_back(currentNode->val);
-
-                // Add left child to the queue if it exists.
-                if (currentNode->left != nullptr) {
-                    q.push(currentNode->left);
-                }
-                // Add right child to the queue if it exists.
-                if (currentNode->right != nullptr) {
-                    q.push(currentNode->right);
-                }
+                if(node->left!=NULL)
+                q.push(node->left);
+                if(node->right!=NULL)
+                q.push(node->right);
+                temp.push_back(node->val);
             }
-            // After processing all nodes at the current level, add their values to the result.
-            result.push_back(currentLevelNodes);
+            ans.push_back(temp);
         }
-
-        return result;
+        return ans;
     }
 };
