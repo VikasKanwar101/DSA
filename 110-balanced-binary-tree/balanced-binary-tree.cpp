@@ -9,19 +9,18 @@
  *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
  * };
  */
-class Solution {
+ class Solution {
 public:
-    int height(TreeNode* l)
-    {
-        if(l==NULL) return 0;
-        int lh=height(l->left);
-        if(lh == -1) return -1;
-        int rh=height(l->right);
-        if(rh==-1) return -1;
-        if(abs(lh-rh)>1) return -1;
-        return 1+max(lh,rh);
+    int maxDepth(TreeNode* root) {
+        if(root==NULL) return 0;
+        int l=maxDepth(root->left);
+        if(l==-1) return -1;
+        int r=maxDepth(root->right);
+        if(r==-1) return -1;
+        if(abs(l-r)>1) return -1;
+        return 1+max(l,r);
     }
     bool isBalanced(TreeNode* root) {
-        return height(root)!=-1;
+        return maxDepth(root)!=-1;
     }
 };
