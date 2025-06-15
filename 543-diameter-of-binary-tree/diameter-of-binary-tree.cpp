@@ -11,16 +11,15 @@
  */
 class Solution {
 public:
-    int height(TreeNode* root, int& diameter) {
-        if(root == nullptr) return 0;
-        int l = height(root->left, diameter);
-        int r = height(root->right, diameter);
-        diameter = max(diameter, l + r); // update diameter if current path is longer
-        return 1 + max(l, r); // correct height calculation
+    int height(TreeNode* node,int& d){
+        if(!node) return 0;
+        int lh=height(node->left,d);
+        int rh=height(node->right,d);
+        d=max(d,lh+rh);
+        return 1+max(lh,rh);
     }
-
     int diameterOfBinaryTree(TreeNode* root) {
-        int diameter = 0;
+        int diameter=0;
         height(root, diameter);
         return diameter;
     }
