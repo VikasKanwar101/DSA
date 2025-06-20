@@ -2,8 +2,9 @@ class Solution {
 public:
     int rob(vector<int>& nums) {
         int cur,prev,prev2;
-        prev=prev2=0;
-        for(int i=0;i<nums.size();i++){
+        prev2=0;
+        prev=nums[0];
+        for(int i=1;i<nums.size();i++){
             int take=nums[i];
             if(i>1) take=take+prev2;
             int nottake=prev;
