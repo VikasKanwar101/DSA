@@ -1,10 +1,16 @@
 class Solution {
 public:
+    int rec(int i,int j,int n,vector<vector<int>>& triangle,vector<vector<int>>& dp){
+        if(i==n-1)
+        return triangle[n-1][j];
+        if(dp[i][j]!=-1) return dp[i][j];
+        int d=triangle[i][j]+rec(i+1,j,n,triangle,dp);
+        int dg=triangle[i][j]+rec(i+1,j+1,n,triangle,dp);
+        return dp[i][j]=min(d,dg);
+    }
     int minimumTotal(vector<vector<int>>& triangle) {
-        int n = triangle.size();
-        for (int row = n - 2; row >= 0; row--) 
-        for (int col = 0; col <= row; col++) 
-        triangle[row][col] += min(triangle[row + 1][col], triangle[row + 1][col + 1]);
-        return triangle[0][0];
+        int n=triangle.size();
+        vector<vector<int>> dp(n,vector<int>(n,-1));
+        return rec(0,0,n,triangle,dp);
     }
 };
