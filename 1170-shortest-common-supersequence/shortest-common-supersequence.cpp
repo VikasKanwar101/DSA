@@ -4,8 +4,6 @@ public:
         int m = str1.size();
         int n = str2.size();
         vector<vector<int>> dp(m + 1, vector<int>(n + 1, 0));
-
-        // Step 1: Fill LCS table
         for (int i = 1; i <= m; i++) {
             for (int j = 1; j <= n; j++) {
                 if (str1[i - 1] == str2[j - 1]) {
@@ -15,11 +13,8 @@ public:
                 }
             }
         }
-
-        // Step 2: Build Shortest Common Supersequence from DP table
         int i = m, j = n;
         string ans = "";
-
         while (i > 0 && j > 0) {
             if (str1[i - 1] == str2[j - 1]) {
                 ans += str1[i - 1];
@@ -32,17 +27,14 @@ public:
                 j--;
             }
         }
-
         while (i > 0) {
             ans += str1[i - 1];
             i--;
         }
-
         while (j > 0) {
             ans += str2[j - 1];
             j--;
         }
-
         reverse(ans.begin(), ans.end());
         return ans;
     }
