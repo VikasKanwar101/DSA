@@ -6,15 +6,10 @@ public:
         int l,r,c;
         l=r=c=0;
         while(l<g.size()  && r<s.size()){
-            if(s[r]>=g[l]){
-                c++;
-                r++;
-                l++;
-            }
-            else{
-                r++;
-            }
+            if(s[r]>=g[l])
+            l++;
+            r++;
         }
-        return c;
+        return l;
     }
 };
