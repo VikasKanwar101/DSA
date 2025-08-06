@@ -1,13 +1,18 @@
 class Solution {
 public:
-    int rec(int n,vector<int> &dp){
-        if(n==0 || n==1) return 1;
-        if(dp[n]!=-1) return dp[n];
-        dp[n]=rec(n-1,dp)+rec(n-2,dp);
+    int f(int n,vector<int>&dp){
+        if(n==0)
+        return 1;
+        if(dp[n]!=-1)
         return dp[n];
+        int l=f(n-1,dp);
+        int r=0;
+        if(n>=2)
+        r=f(n-2,dp);
+        return dp[n]=l+r;
     }
     int climbStairs(int n){
-        vector<int> dp(n+1,-1);
-        return rec(n,dp);
+        vector<int>dp(n+1,-1);
+        return f(n,dp);
     }
 };
