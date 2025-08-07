@@ -1,26 +1,20 @@
 class Solution {
 public:
-    int help(vector<int>& nums) {
-        int cur,prev,prev2;
-        prev2=0;
-        prev=nums[0];
-        for(int i=1;i<nums.size();i++){
-            int take=nums[i];
-            if(i>1) take=take+prev2;
-            int nottake=prev;
-            cur=max(take,nottake);
-            prev2=prev;
-            prev=cur;
-        }
-        return prev;
+    int rec(vector<int>& nums,int i,vector<int>& dp,int e){
+        if(i==e)
+        return nums[i];
+        if(i<e)
+        return 0;
+        if(dp[i]!=-1) 
+        return dp[i];
+        int p=rec(nums,i-2,dp,e)+nums[i];
+        int np=rec(nums,i-1,dp,e);
+        return dp[i]=max(p,np);
     }
     int rob(vector<int>& nums) {
-        if(nums.size()==1) return nums[0];
-        vector<int> nums1,nums2;
-        for(int i=0;i<nums.size();i++){
-            if(i!=0) nums1.push_back(nums[i]);
-            if(nums.size()-1!=i) nums2.push_back(nums[i]);
-        }
-        return max(help(nums1),help(nums2));
+        if (nums.size()==1) return nums[0];
+        vector<int>dp1(nums.size(),-1);
+        vector<int>dp2(nums.size(),-1);
+        return max(rec(nums,nums.size()-1,dp1,1),rec(nums,nums.size()-2,dp2,0));
     }
 };
