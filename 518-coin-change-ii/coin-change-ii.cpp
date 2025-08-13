@@ -1,20 +1,20 @@
 class Solution {
 public:
-    int f(int ind,int T,vector<int>& coins,vector<vector<int>>&dp){
-        if(ind==0){
-            return (T%coins[0]==0);
+    int f(int n,int a,vector<int>& coins,vector<vector<int>>& dp){
+        if(n<0){
+            if(a==0) return 1;
+            return 0;
         }
-        if(dp[ind][T]!=-1) return dp[ind][T];
-        long nt=f(ind-1,T,coins,dp);
-        long t=0;
-        if(coins[ind]<=T){
-            t=f(ind,T-coins[ind],coins,dp);
-        }
-        return dp[ind][T]=t+nt;
+        if(dp[n][a]!=-1) return dp[n][a];
+        int pick=0;
+        if(a>=coins[n])
+        pick=f(n,a-coins[n],coins,dp);
+        int notpick=f(n-1,a,coins,dp);
+        return dp[n][a]=pick+notpick;
     }
     int change(int amount, vector<int>& coins) {
         int n=coins.size();
-        vector<vector<int>>dp(n,vector<int>((amount+1),-1));
+        vector<vector<int>>dp(n,vector<int>(amount+1,-1));
         return f(n-1,amount,coins,dp);
     }
 };
