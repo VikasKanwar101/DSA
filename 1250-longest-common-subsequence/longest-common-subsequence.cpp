@@ -1,19 +1,17 @@
 class Solution {
 public:
+    int f(int m,int n,string &text1,string &text2,vector<vector<int>>& dp){
+        if(m<0 || n<0) return 0;
+        if(dp[m][n]!=-1) return dp[m][n];
+        if(text1[m]==text2[n])
+        return dp[m][n]=1+f(m-1,n-1,text1,text2,dp);
+        else
+        return dp[m][n]=max(f(m-1,n,text1,text2,dp),f(m,n-1,text1,text2,dp));
+    }
     int longestCommonSubsequence(string text1, string text2) {
         int m=text1.size();
         int n=text2.size();
-        vector<vector<int>>dp(m+1,vector<int>(n+1,0));
-        for(int ind1=1;ind1<=m;ind1++){
-            for(int ind2=1;ind2<=n;ind2++){
-                if(text1[ind1-1]==text2[ind2-1]){
-                    dp[ind1][ind2]=1+dp[ind1-1][ind2-1];
-                }
-                else{
-                    dp[ind1][ind2]=max(dp[ind1-1][ind2],dp[ind1][ind2-1]);
-                }
-            }            
-        }
-        return dp[m][n];
+        vector<vector<int>>dp(m,vector<int>(n,-1));
+        return f(m-1,n-1,text1,text2,dp);
     }
 };
