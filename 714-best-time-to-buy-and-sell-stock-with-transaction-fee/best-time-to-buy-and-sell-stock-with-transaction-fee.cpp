@@ -1,6 +1,6 @@
 class Solution {
 public:
-    int f(int ind,int buy,vector<int>& prices,int &n,vector<vector<int>>& dp,int fee){
+    int f(int ind,int buy,vector<int>& prices,int &n,vector<vector<int>>& dp,int &fee){
         if(ind==n) return 0;
         if(dp[ind][buy]!=-1) return dp[ind][buy];
         int take=1e9;
