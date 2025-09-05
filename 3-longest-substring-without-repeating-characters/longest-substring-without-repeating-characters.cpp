@@ -1,18 +1,22 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-    int mpp[256];  // Tracks last index of each char
-    memset(mpp, -1, sizeof(mpp));  // Initialize all to -1
-    int l = 0, r = 0, ml = 0;
-
-    while (r < s.length()) {
-        if (mpp[s[r]] != -1) {
-            l = max(l, mpp[s[r]] + 1);  // Move 'l' past the last occurrence
+        int hash[257];
+        for(int i=0;i<257;i++) hash[i]=-1;
+        int l,r,m;
+        m=l=r=0;
+        int maxi=0;
+        while(r<s.length()){
+            if(hash[s[r]]!=-1){
+                if(hash[s[r]]>=l){
+                    l=hash[s[r]]+1;
+                }
+            }
+            m=r-l+1;
+            maxi=max(m,maxi);
+            hash[s[r]]=r;
+            r++;
         }
-        mpp[s[r]] = r;  // Update last index
-        ml = max(ml, r - l + 1);
-        r++;
+        return maxi;
     }
-    return ml;
-}
 };
