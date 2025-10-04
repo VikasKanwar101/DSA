@@ -1,17 +1,21 @@
 class Solution {
 public:
-    void rev(vector<int>& arr, int left, int right){
-        while(left<right){
-            swap(arr[left],arr[right]);
-            left++;
-            right--;
+    void rotate(vector<int>& nums, int k) {
+        int n=nums.size();
+        int r=k%n;
+        vector<int>temp(n);
+        int m=n-r;
+        for(int i=0;i<r;i++){
+            temp[i]=nums[m];
+            m++;
         }
-    }
-    void rotate(vector<int>& nums, int r) {
-        int l=nums.size();
-        r=r%l;
-        rev(nums,0,l-1);
-        rev(nums,0,r-1);
-        rev(nums,r,l-1);
+        int a=0;
+        for(int i=r;i<n;i++){
+            temp[i]=nums[a];
+            a++;
+        }
+        for(int i=0;i<n;i++){
+            nums[i]=temp[i];
+        }
     }
 };
