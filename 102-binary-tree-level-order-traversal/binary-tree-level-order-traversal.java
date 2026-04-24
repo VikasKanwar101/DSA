@@ -24,7 +24,8 @@ class Solution {
             List<Integer> temp=new ArrayList<>();
             int s=q.size();
             while(s>0){
-                TreeNode node=q.poll();
+                TreeNode node=q.peek();
+                q.poll();
                 temp.add(node.val);
                 if(node.left!=null)
                 q.add(node.left);
